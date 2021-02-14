@@ -6,22 +6,30 @@ import { Router } from '@angular/router';
 
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { AppService } from '../app.service';
+import { MemberDetailsComponent } from '../member-details/member-details.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import {ROUTES} from '../app.module'
 
 describe('MembersComponent', () => {
   let component: MembersComponent;
   let fixture: ComponentFixture<MembersComponent>;
+  let service:AppService;
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MembersComponent],
-      imports: [HttpClientModule, RouterModule],
+      declarations: [MembersComponent
+      ],
+      imports: [HttpClientModule],
       providers: [
         {
           provide: Router,
           useClass: class {
             navigate = jasmine.createSpy('navigate');
           }
-        }
+        },
+        AppService
       ]
     }).compileComponents();
   }));
@@ -35,4 +43,6 @@ describe('MembersComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  
 });

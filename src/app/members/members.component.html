@@ -9,16 +9,21 @@
         <th>Job Title</th>
         <th>Racing Team</th>
         <th>Status</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor='let member of members'>
+      <tr *ngFor='let member of members' >
         <td>{{member?.id}}</td>
         <td>{{member?.firstName}}</td>
         <td>{{member?.lastName}}</td>
         <td>{{member?.jobTitle}}</td>
         <td>{{member?.team}}</td>
         <td>{{member?.status}}</td>
+        <td>
+          <button (click)="editMemberByID(member.id)" class="btn btn-primary">Update</button>
+            <button (click)="deleteMemberById(member.id)" class="btn btn-danger">Delete</button>
+        </td>
       </tr>
     </tbody>
   </table>

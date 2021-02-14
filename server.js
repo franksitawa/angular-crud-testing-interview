@@ -45,12 +45,44 @@ app.get('/api/members', (req, res) => {
 
 // TODO: Dropdown!
 app.get('/api/teams', (req, res) => {
-
+  request('http://localhost:3000/teams', (err, response, body) => {
+    if (response.statusCode <= 500) {
+      res.send(body);
+    }
+  });
 });
 
 // Submit Form!
 app.post('/api/addMember', (req, res) => {
+  request.post('http://localhost:3000/members',{form:req.body}, (err, response, body) => {
+    if (response.statusCode <= 500) {
+      res.send(body);
+    }
+  });
+});
 
+app.put('/api/updateMember/:id', (req, res) => {
+  request.put('http://localhost:3000/members/'+req.params.id,{form:req.body}, (err, response, body) => {
+    if (response.statusCode <= 500) {
+      res.send(body);
+    }
+  });
+});
+
+app.delete('/api/deleteMember/:id', (req, res) => {
+  request.del('http://localhost:3000/members/'+req.params.id,{}, (err, response, body) => {
+    if (response.statusCode <= 500) {
+      res.send(body);
+    }
+  });
+});
+
+app.get('/api/getMember/:id', (req, res) => {
+  request.get('http://localhost:3000/members/'+req.params.id,{}, (err, response, body) => {
+    if (response.statusCode <= 500) {
+      res.send(body);
+    }
+  });
 });
 
 app.get('*', (req, res) => {

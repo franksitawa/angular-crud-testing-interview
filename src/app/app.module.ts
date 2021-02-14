@@ -15,11 +15,19 @@ import { MembersComponent } from './members/members.component';
 import { LoginComponent } from './login/login.component';
 
 // We may be missing a route...
-const ROUTES = [
+export const ROUTES = [
   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
+  },
+  {
+    path: 'add-member',
+    component: MemberDetailsComponent
+  },
+  {
+    path: 'edit-member/:id',
+    component: MemberDetailsComponent
   },
   {
     path: 'members',

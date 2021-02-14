@@ -23,9 +23,26 @@ export class AppService {
     this.username = name;
   }
 
-  addMember(memberForm) {}
+  addMember(memberForm) {
+    return this.http.post(`${this.api}/addMember`, memberForm).pipe(catchError(this.handleError));
+  }
+  updateMember(id,memberForm) {
+    return this.http.put(`${this.api}/updateMember/`+id, memberForm).pipe(catchError(this.handleError));
+  }
 
-  getTeams() {}
+  deleteMember(id){
+    return this.http.delete(`${this.api}/deleteMember/` + id).pipe(catchError(this.handleError));;
+  }
+
+  getMember(id){
+    return this.http.get(`${this.api}/getMember/` + id).pipe(catchError(this.handleError));;
+  }
+
+  getTeams() {
+    return this.http
+      .get(`${this.api}/teams`)
+      .pipe(catchError(this.handleError));
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
